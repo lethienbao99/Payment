@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Payment.Domain.Common;
+using System;
 using System.Collections.Generic;
 
 namespace Payment.Domain.Entities;
 
-public partial class Merchant
+public partial class Merchant: BaseEntity
 {
     public string Id { get; set; } = null!;
 

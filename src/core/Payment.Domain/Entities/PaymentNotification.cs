@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Payment.Domain.Common;
+using System;
 using System.Collections.Generic;
 
 namespace Payment.Domain.Entities;
 
-public partial class PaymentNotification
+public partial class PaymentNotification: BaseEntity
 {
     public string Id { get; set; } = null!;
 

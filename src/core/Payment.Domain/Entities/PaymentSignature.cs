@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Payment.Domain.Common;
+using System;
 using System.Collections.Generic;
 
 namespace Payment.Domain.Entities;
 
-public partial class PaymentSignature
+public partial class PaymentSignature: BaseEntity
 {
     public string Id { get; set; } = null!;
 

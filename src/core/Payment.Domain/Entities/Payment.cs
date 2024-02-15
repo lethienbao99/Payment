@@ -1,13 +1,15 @@
-﻿using System;
+﻿using Payment.Domain.Common;
+using System;
 using System.Collections.Generic;
 
 namespace Payment.Domain.Entities;
 
-public partial class Payment
+public partial class Payment: BaseEntity
 {
     public string Id { get; set; } = null!;
 
     public string? PaymentContent { get; set; }
+    public string? PaymentContent2 { get; set; }
 
     public string? PaymentCurrency { get; set; }
 
