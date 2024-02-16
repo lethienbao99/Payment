@@ -6,8 +6,6 @@ namespace Payment.Domain.Entities;
 
 public partial class PaymentSignature: BaseEntity
 {
-    public string Id { get; set; } = null!;
-
     public string? SignValue { get; set; }
 
     public string? SignAlgo { get; set; }
@@ -17,6 +15,7 @@ public partial class PaymentSignature: BaseEntity
     public string? SignOwn { get; set; }
 
     public string? PaymentId { get; set; }
+    public bool? IsValid { get; set; }
 
     public virtual Payment? Payment { get; set; }
 }

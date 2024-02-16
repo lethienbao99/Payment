@@ -6,8 +6,6 @@ namespace Payment.Domain.Entities;
 
 public partial class Merchant: BaseEntity
 {
-    public string Id { get; set; } = null!;
-
     public string? MerchantName { get; set; }
 
     public string? MerchantWebLink { get; set; }

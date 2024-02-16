@@ -6,13 +6,11 @@ namespace Payment.Domain.Entities;
 
 public partial class PaymentNotification: BaseEntity
 {
-    public string Id { get; set; } = null!;
-
     public string? PaymentRefId { get; set; }
 
-    public string? NotiDate { get; set; }
+    public DateTime? NotiDate { get; set; }
 
-    public string? NotiAmount { get; set; }
+    public decimal? NotiAmount { get; set; }
 
     public string? NotiContent { get; set; }
 
@@ -26,7 +24,7 @@ public partial class PaymentNotification: BaseEntity
 
     public string? NotiStatus { get; set; }
 
-    public string? NotiResDate { get; set; }
+    public DateTime? NotiResDate { get; set; }
 
     public virtual Merchant? Merchant { get; set; }
 

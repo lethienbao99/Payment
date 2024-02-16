@@ -6,8 +6,6 @@ namespace Payment.Domain.Entities;
 
 public partial class Payment: BaseEntity
 {
-    public string Id { get; set; } = null!;
-
     public string? PaymentContent { get; set; }
     public string? PaymentContent2 { get; set; }
 

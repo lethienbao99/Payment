@@ -6,8 +6,6 @@ namespace Payment.Domain.Entities;
 
 public partial class PaymentTransaction: BaseEntity
 {
-    public string Id { get; set; } = null!;
-
     public string? TranMessage { get; set; }
 
     public string? TranPayload { get; set; }
@@ -19,6 +17,7 @@ public partial class PaymentTransaction: BaseEntity
     public DateTime? TranDate { get; set; }
 
     public string? PaymentId { get; set; }
+    public string? TranRefId { get; set; }
 
     public virtual Payment? Payment { get; set; }
 }
