@@ -7,17 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Merchants\Queries\" />
-    <Folder Include="Features\Payment\Queries\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Mapster" Version="7.4.0" />
     <PackageReference Include="MediatR" Version="12.2.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Payment.Domain\Payment.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\Merchants\Queries\" />
   </ItemGroup>
 
 </Project>

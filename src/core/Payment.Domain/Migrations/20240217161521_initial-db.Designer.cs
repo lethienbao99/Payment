@@ -12,8 +12,8 @@ using Payment.Domain.Entities;
 namespace Payment.Domain.Migrations
 {
     [DbContext(typeof(PaymentContext))]
-    [Migration("20240215100426_initialDatabase")]
-    partial class initialDatabase
+    [Migration("20240217161521_initial-db")]
+    partial class initialdb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,9 +27,9 @@ namespace Payment.Domain.Migrations
 
             modelBuilder.Entity("Payment.Domain.Entities.Merchant", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -69,14 +69,14 @@ namespace Payment.Domain.Migrations
                     b.HasKey("Id")
                         .HasName("PK__Merchant__3214EC07E6617C1B");
 
-                    b.ToTable("Merchant", (string)null);
+                    b.ToTable("Merchants", (string)null);
                 });
 
             modelBuilder.Entity("Payment.Domain.Entities.Payment", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -87,9 +87,8 @@ namespace Payment.Domain.Migrations
                     b.Property<DateTime?>("ExpireDate")
                         .HasColumnType("datetime");
 
-                    b.Property<string>("MerchantId")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                    b.Property<Guid?>("MerchantId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal?>("PaidAmount")
                         .HasColumnType("decimal(19, 2)");
@@ -108,9 +107,8 @@ namespace Payment.Domain.Migrations
                     b.Property<DateTime?>("PaymentDate")
                         .HasColumnType("datetime");
 
-                    b.Property<string>("PaymentDestinationId")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                    b.Property<Guid?>("PaymentDestinationId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("PaymentLanguage")
                         .HasMaxLength(10)
@@ -120,9 +118,8 @@ namespace Payment.Domain.Migrations
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
-                    b.Property<string>("PaymentRefId")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                    b.Property<Guid?>("PaymentRefId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("PaymentStatus")
                         .HasMaxLength(20)
@@ -144,14 +141,14 @@ namespace Payment.Domain.Migrations
 
                     b.HasIndex("PaymentDestinationId");
 
-                    b.ToTable("Payment", (string)null);
+                    b.ToTable("Payments", (string)null);
                 });
 
             modelBuilder.Entity("Payment.Domain.Entities.PaymentDestination", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -177,9 +174,8 @@ namespace Payment.Domain.Migrations
                     b.Property<bool?>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ParentId")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                    b.Property<Guid?>("ParentId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -192,14 +188,14 @@ namespace Payment.Domain.Migrations
 
                     b.HasIndex("ParentId");
 
-                    b.ToTable("PaymentDestination", (string)null);
+                    b.ToTable("PaymentDestinations", (string)null);
                 });
 
             modelBuilder.Entity("Payment.Domain.Entities.PaymentNotification", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -207,29 +203,28 @@ namespace Payment.Domain.Migrations
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("MerchantId")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                    b.Property<Guid?>("MerchantId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("NotiAmount")
+                    b.Property<decimal?>("NotiAmount")
                         .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("NotiContent")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("NotiDate")
+                    b.Property<DateTime?>("NotiDate")
                         .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("NotiMessage")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("NotiResDate")
+                    b.Property<DateTime?>("NotiResDate")
                         .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("NotiSignature")
                         .HasMaxLength(50)
@@ -239,13 +234,11 @@ namespace Payment.Domain.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("PaymentId")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                    b.Property<Guid?>("PaymentId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("PaymentRefId")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                    b.Property<Guid?>("PaymentRefId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -260,14 +253,14 @@ namespace Payment.Domain.Migrations
 
                     b.HasIndex("PaymentId");
 
-                    b.ToTable("PaymentNotification", (string)null);
+                    b.ToTable("PaymentNotifications", (string)null);
                 });
 
             modelBuilder.Entity("Payment.Domain.Entities.PaymentSignature", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -275,9 +268,11 @@ namespace Payment.Domain.Migrations
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PaymentId")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                    b.Property<bool?>("IsValid")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid?>("PaymentId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("SignAlgo")
                         .HasMaxLength(50)
@@ -305,14 +300,14 @@ namespace Payment.Domain.Migrations
 
                     b.HasIndex("PaymentId");
 
-                    b.ToTable("PaymentSignature", (string)null);
+                    b.ToTable("PaymentSignatures", (string)null);
                 });
 
             modelBuilder.Entity("Payment.Domain.Entities.PaymentTransaction", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -320,9 +315,8 @@ namespace Payment.Domain.Migrations
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PaymentId")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                    b.Property<Guid?>("PaymentId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal?>("TranAmount")
                         .HasColumnType("decimal(19, 2)");
@@ -337,6 +331,9 @@ namespace Payment.Domain.Migrations
                     b.Property<string>("TranPayload")
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
+
+                    b.Property<Guid?>("TranRefId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("TranStatus")
                         .HasMaxLength(20)
@@ -353,7 +350,7 @@ namespace Payment.Domain.Migrations
 
                     b.HasIndex("PaymentId");
 
-                    b.ToTable("PaymentTransaction", (string)null);
+                    b.ToTable("PaymentTransactions", (string)null);
                 });
 
             modelBuilder.Entity("Payment.Domain.Entities.Payment", b =>

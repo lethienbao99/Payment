@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Payment.Application.Features.Merchant.Dtos
+namespace Payment.Application.Features.Merchants.Dtos
 {
     public class MerchantDto
     {
-        public string Id { get; set; } = null!;
-
         public string? MerchantName { get; set; }
 
         public string? MerchantWebLink { get; set; }

@@ -16,8 +16,8 @@ public partial class PaymentTransaction: BaseEntity
 
     public DateTime? TranDate { get; set; }
 
-    public string? PaymentId { get; set; }
-    public string? TranRefId { get; set; }
+    public Guid? PaymentId { get; set; }
+    public Guid? TranRefId { get; set; }
 
     public virtual Payment? Payment { get; set; }
 }

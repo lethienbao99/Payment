@@ -11,7 +11,7 @@ public partial class Payment: BaseEntity
 
     public string? PaymentCurrency { get; set; }
 
-    public string? PaymentRefId { get; set; }
+    public Guid? PaymentRefId { get; set; }
 
     public decimal? RequiredAmount { get; set; }
 
@@ -21,9 +21,9 @@ public partial class Payment: BaseEntity
 
     public string? PaymentLanguage { get; set; }
 
-    public string? MerchantId { get; set; }
+    public Guid? MerchantId { get; set; }
 
-    public string? PaymentDestinationId { get; set; }
+    public Guid? PaymentDestinationId { get; set; }
 
     public decimal? PaidAmount { get; set; }
 

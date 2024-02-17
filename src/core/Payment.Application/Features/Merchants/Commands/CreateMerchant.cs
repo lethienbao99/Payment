@@ -1,6 +1,6 @@
 ﻿using Mapster;
 using MediatR;
-using Payment.Application.Features.Merchant.Dtos;
+using Payment.Application.Features.Merchants.Dtos;
 using Payment.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Payment.Application.Features.Merchants.Commands
 {
-    public class CreateMerchant: IRequest<MerchantDto>
+    public class CreateMerchant : IRequest<MerchantDto>
     {
         public string? MerchantName { get; set; }
 
@@ -28,15 +28,15 @@ namespace Payment.Application.Features.Merchants.Commands
         {
             _paymentContext = paymentContext;
         }
-        public async Task<MerchantDto> Handle(CreateMerchant request, CancellationToken cancellationToken)
+        public Task<MerchantDto> Handle(CreateMerchant request, CancellationToken cancellationToken)
         {
             try
             {
-                var entity = new Domain.Entities.Merchant();
-                entity.MerchantName = request.MerchantName;
+                var entity = new Merchant();
+                entity = request.Adapt<Merchant>();
                 _paymentContext.Merchants.Add(entity);
                 _paymentContext.SaveChanges();
-                return entity.Adapt<MerchantDto>();
+                return Task.FromResult(entity.Adapt<MerchantDto>());
             }
             catch (Exception e)
             {

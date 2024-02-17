@@ -6,7 +6,7 @@ namespace Payment.Domain.Entities;
 
 public partial class PaymentNotification: BaseEntity
 {
-    public string? PaymentRefId { get; set; }
+    public Guid? PaymentRefId { get; set; }
 
     public DateTime? NotiDate { get; set; }
 
@@ -18,9 +18,9 @@ public partial class PaymentNotification: BaseEntity
 
     public string? NotiSignature { get; set; }
 
-    public string? PaymentId { get; set; }
+    public Guid? PaymentId { get; set; }
 
-    public string? MerchantId { get; set; }
+    public Guid? MerchantId { get; set; }
 
     public string? NotiStatus { get; set; }
 

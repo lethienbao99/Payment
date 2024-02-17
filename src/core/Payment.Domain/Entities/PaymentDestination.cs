@@ -14,7 +14,7 @@ public partial class PaymentDestination: BaseEntity
 
     public int? DesSortIndex { get; set; }
 
-    public string? ParentId { get; set; }
+    public Guid? ParentId { get; set; }
 
     public bool? IsActive { get; set; }
 

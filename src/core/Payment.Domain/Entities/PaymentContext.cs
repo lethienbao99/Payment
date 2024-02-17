@@ -37,9 +37,8 @@ public partial class PaymentContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PK__Merchant__3214EC07E6617C1B");
 
-            entity.ToTable("Merchant");
+            entity.ToTable("Merchants");
 
-            entity.Property(e => e.Id).HasMaxLength(50);
             entity.Property(e => e.MerchantIpnUrl).HasMaxLength(250);
             entity.Property(e => e.MerchantName).HasMaxLength(50);
             entity.Property(e => e.MerchantReturnUrl).HasMaxLength(250);
@@ -51,19 +50,15 @@ public partial class PaymentContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PK__Payment__3214EC071C987700");
 
-            entity.ToTable("Payment");
+            entity.ToTable("Payments");
 
-            entity.Property(e => e.Id).HasMaxLength(50);
             entity.Property(e => e.ExpireDate).HasColumnType("datetime");
-            entity.Property(e => e.MerchantId).HasMaxLength(50);
             entity.Property(e => e.PaidAmount).HasColumnType("decimal(19, 2)");
             entity.Property(e => e.PaymentContent).HasMaxLength(250);
             entity.Property(e => e.PaymentCurrency).HasMaxLength(50);
             entity.Property(e => e.PaymentDate).HasColumnType("datetime");
-            entity.Property(e => e.PaymentDestinationId).HasMaxLength(50);
             entity.Property(e => e.PaymentLanguage).HasMaxLength(10);
             entity.Property(e => e.PaymentLastMessage).HasMaxLength(250);
-            entity.Property(e => e.PaymentRefId).HasMaxLength(50);
             entity.Property(e => e.PaymentStatus).HasMaxLength(20);
             entity.Property(e => e.RequiredAmount).HasColumnType("decimal(19, 2)");
 
@@ -80,13 +75,11 @@ public partial class PaymentContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PK__PaymentD__3214EC071CEF14AC");
 
-            entity.ToTable("PaymentDestination");
+            entity.ToTable("PaymentDestinations");
 
-            entity.Property(e => e.Id).HasMaxLength(50);
             entity.Property(e => e.DesLogo).HasMaxLength(250);
             entity.Property(e => e.DesName).HasMaxLength(250);
             entity.Property(e => e.DesShortName).HasMaxLength(50);
-            entity.Property(e => e.ParentId).HasMaxLength(50);
 
             entity.HasOne(d => d.Parent).WithMany(p => p.InverseParent)
                 .HasForeignKey(d => d.ParentId)
@@ -97,10 +90,8 @@ public partial class PaymentContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PK__PaymentN__3214EC078A1D9815");
 
-            entity.ToTable("PaymentNotification");
+            entity.ToTable("PaymentNotifications");
 
-            entity.Property(e => e.Id).HasMaxLength(50);
-            entity.Property(e => e.MerchantId).HasMaxLength(50);
             entity.Property(e => e.NotiAmount).HasMaxLength(50);
             entity.Property(e => e.NotiContent).HasMaxLength(50);
             entity.Property(e => e.NotiDate).HasMaxLength(50);
@@ -108,8 +99,6 @@ public partial class PaymentContext : DbContext
             entity.Property(e => e.NotiResDate).HasMaxLength(50);
             entity.Property(e => e.NotiSignature).HasMaxLength(50);
             entity.Property(e => e.NotiStatus).HasMaxLength(50);
-            entity.Property(e => e.PaymentId).HasMaxLength(50);
-            entity.Property(e => e.PaymentRefId).HasMaxLength(50);
 
             entity.HasOne(d => d.Merchant).WithMany(p => p.PaymentNotifications)
                 .HasForeignKey(d => d.MerchantId)
@@ -124,10 +113,8 @@ public partial class PaymentContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PK__PaymentS__3214EC07758AD836");
 
-            entity.ToTable("PaymentSignature");
+            entity.ToTable("PaymentSignatures");
 
-            entity.Property(e => e.Id).HasMaxLength(50);
-            entity.Property(e => e.PaymentId).HasMaxLength(50);
             entity.Property(e => e.SignAlgo).HasMaxLength(50);
             entity.Property(e => e.SignDate).HasColumnType("datetime");
             entity.Property(e => e.SignOwn).HasMaxLength(50);
@@ -142,10 +129,8 @@ public partial class PaymentContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PK__PaymentT__3214EC07B6A13815");
 
-            entity.ToTable("PaymentTransaction");
+            entity.ToTable("PaymentTransactions");
 
-            entity.Property(e => e.Id).HasMaxLength(50);
-            entity.Property(e => e.PaymentId).HasMaxLength(50);
             entity.Property(e => e.TranAmount).HasColumnType("decimal(19, 2)");
             entity.Property(e => e.TranDate).HasColumnType("datetime");
             entity.Property(e => e.TranMessage).HasMaxLength(250);
